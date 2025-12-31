@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>For Prachi 💖 - Ultimate Love Experience</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <style>
 :root {
   --bg-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 50%, #ff6b9d 100%);
@@ -20,15 +20,18 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 body {
-  font-family: 'Segoe UI', -apple-system, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg-gradient);
   color: var(--text-primary);
-  overflow: hidden;
+  overflow-x: hidden;
   height: 100vh;
   position: relative;
+  touch-action: manipulation;
 }
 
 body::before {
@@ -49,17 +52,18 @@ body::before {
 
 .screen {
   display: none;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
-  padding: 1.5rem;
+  padding: clamp(1rem, 4vw, 2rem);
   position: absolute;
   top: 0;
   left: 0;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .screen.active {
@@ -73,31 +77,34 @@ body::before {
 }
 
 h2 {
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-  margin-bottom: 1.2rem;
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  margin-bottom: clamp(1rem, 4vw, 1.5rem);
   background: linear-gradient(45deg, #fff, rgba(255,255,255,0.8));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 800;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.02em;
   text-shadow: 0 2px 15px rgba(0,0,0,0.3);
-  max-width: 90%;
+  max-width: 95%;
+  line-height: 1.2;
 }
 
 .sub {
   opacity: 0.9;
-  font-size: clamp(0.95rem, 2.8vw, 1.1rem);
-  margin-top: 1rem;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  margin-top: clamp(0.8rem, 3vw, 1.2rem);
   font-weight: 400;
   max-width: 95%;
-  line-height: 1.4;
+  line-height: 1.5;
+  padding: 0 0.5rem;
 }
 
 .interactive {
   position: relative;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  touch-action: manipulation;
 }
 
 .interactive:active {
@@ -106,14 +113,8 @@ h2 {
 }
 
 @keyframes rippleEffect {
-  0% {
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(4);
-    opacity: 0;
-  }
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(4); opacity: 0; }
 }
 
 .ripple {
@@ -126,32 +127,33 @@ h2 {
 }
 
 .heart-container {
-  width: clamp(200px, 55vw, 260px);
-  height: clamp(200px, 55vw, 260px);
+  width: clamp(160px, 50vw, 240px);
+  height: clamp(160px, 50vw, 240px);
   background: var(--glass-bg);
   backdrop-filter: blur(25px);
-  border-radius: 45px;
+  border-radius: clamp(30px, 12vw, 45px);
   border: 1px solid var(--glass-border);
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: var(--shadow-main);
-  margin: 0 auto 1rem;
+  margin: 0 auto clamp(0.8rem, 3vw, 1rem);
   overflow: hidden;
+  max-width: 90vw;
 }
 
 .heart-container::before {
   content: '';
   position: absolute;
-  inset: 6px;
+  inset: clamp(4px, 1.5vw, 6px);
   background: rgba(255,255,255,0.1);
-  border-radius: 39px;
+  border-radius: inherit;
   z-index: -1;
 }
 
 .heart-glow {
-  width: clamp(150px, 42vw, 190px);
-  height: clamp(150px, 42vw, 190px);
+  width: clamp(120px, 38vw, 180px);
+  height: clamp(120px, 38vw, 180px);
   border-radius: 50%;
   border: 3px solid rgba(255,107,157,0.9);
   display: flex;
@@ -167,7 +169,7 @@ h2 {
 }
 
 .heart {
-  font-size: clamp(5rem, 15vw, 7rem);
+  font-size: clamp(4rem, 14vw, 6.5rem);
   line-height: 1;
   animation: beat 1.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
   filter: drop-shadow(0 6px 20px rgba(255,107,157,0.7));
@@ -190,41 +192,44 @@ h2 {
 }
 
 .ticket {
-  width: clamp(220px, 60vw, 280px);
-  height: clamp(110px, 16vw, 130px);
+  width: clamp(180px, 55vw, 260px);
+  height: clamp(90px, 14vw, 120px);
   background: linear-gradient(145deg, #ffd700, #ffed4e);
-  border-radius: 22px;
+  border-radius: clamp(18px, 8vw, 22px);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: clamp(1.3rem, 4vw, 1.7rem);
+  font-size: clamp(1.1rem, 3.8vw, 1.6rem);
   font-weight: 700;
   color: #1a1a2e;
   box-shadow: var(--shadow-main), 0 8px 25px rgba(255,215,0,0.4);
   margin: 0 auto;
   overflow: hidden;
+  max-width: 90vw;
 }
 
 .stack {
   position: relative;
-  width: clamp(260px, 72vw, 340px);
-  height: clamp(280px, 70vh, 360px);
-  margin: 1rem auto;
+  width: clamp(220px, 68vw, 320px);
+  height: clamp(240px, 65vh, 340px);
+  margin: clamp(0.8rem, 3vw, 1rem) auto;
+  max-width: 95vw;
+  max-height: 70vh;
 }
 
 .card {
   position: absolute;
   width: 90%;
   height: 85%;
-  border-radius: 24px;
+  border-radius: clamp(20px, 8vw, 24px);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: clamp(1.2rem, 3.8vw, 1.6rem);
+  font-size: clamp(1rem, 3.5vw, 1.5rem);
   font-weight: 700;
   color: #1a1a2e;
   text-align: center;
-  padding: 1.5rem;
+  padding: clamp(0.8rem, 3vw, 1.2rem);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -233,6 +238,7 @@ h2 {
   border: 1px solid rgba(255,255,255,0.2);
   transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
   overflow: hidden;
+  max-width: 90vw;
 }
 
 .card:nth-child(1) { background: linear-gradient(145deg, #ffecd2, #fcb69f); }
@@ -247,35 +253,36 @@ h2 {
 
 .gallery-container {
   background: rgba(255, 255, 255, 0.95);
-  padding: clamp(1.2rem, 4vw, 1.8rem);
-  border-radius: 26px;
+  padding: clamp(1rem, 3.5vw, 1.6rem);
+  border-radius: clamp(22px, 9vw, 26px);
   box-shadow: var(--shadow-main);
   position: relative;
   overflow: hidden;
   border: 2px solid rgba(255,255,255,0.3);
-  margin: 0 auto 1rem;
-  max-width: 95vw;
+  margin: 0 auto clamp(0.8rem, 3vw, 1rem);
+  max-width: 98vw;
+  width: 100%;
 }
 
 .gallery-img {
   width: 100%;
-  height: clamp(320px, 65vh, 450px);
-  max-height: 60vh;
+  height: clamp(280px, 60vh, 420px);
+  max-height: 55vh;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: clamp(16px, 7vw, 20px);
   display: block;
   transition: all 0.5s ease;
 }
 
 .final-img {
-  width: clamp(140px, 35vw, 200px);
-  height: clamp(140px, 35vw, 200px);
-  max-width: 45vw;
-  max-height: 35vh;
+  width: clamp(120px, 32vw, 180px);
+  height: clamp(120px, 32vw, 180px);
+  max-width: 42vw;
+  max-height: 32vh;
   border-radius: 50%;
   border: 5px solid var(--heart-glow);
   box-shadow: var(--shadow-glow);
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(1rem, 4vw, 1.5rem);
   object-fit: cover;
   animation: gentleFloat 3.5s ease-in-out infinite;
 }
@@ -287,29 +294,50 @@ h2 {
 
 .final-message {
   max-width: 95vw;
-  padding: clamp(1.5rem, 6vw, 2.5rem);
-  font-size: clamp(1.1rem, 3.2vw, 1.3rem);
-  line-height: 1.7;
+  padding: clamp(1.2rem, 5vw, 2.2rem);
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  line-height: 1.6;
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
-  border-radius: 22px;
+  border-radius: clamp(18px, 7vw, 22px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-main);
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.8rem, 3vw, 1rem);
 }
 
+.screen.final {
+  padding-bottom: 2rem;
+}
+
+/* MOBILE PERFECT RESPONSIVE */
 @media (max-width: 480px) {
-  .screen { padding: 1rem; }
+  .screen { 
+    padding: clamp(0.8rem, 4vw, 1.2rem);
+    gap: 1rem;
+  }
+  .heart-container, .ticket { margin-bottom: 1rem; }
+  h2 { margin-bottom: 0.8rem; }
+  .gallery-img { max-height: 50vh !important; }
   .final-img { margin-bottom: 1rem; }
-  h2 { margin-bottom: 1rem; }
+}
+
+@media (max-width: 360px) {
+  .stack { width: 95vw !important; height: 60vh !important; }
+  .card { padding: 0.8rem !important; font-size: 0.95rem !important; }
+}
+
+/* PREVENT ZOOM ON INPUT */
+input, button { 
+  font-size: 16px; 
+  touch-action: manipulation;
 }
 </style>
 </head>
 <body>
 
 <audio id="audio1" preload="auto" src="audio1.mp3"></audio>
-<audio id="audio2" preload="auto" src="audio2.wav"></audio>
+<audio id="audio2" preload="auto" src="audio2.mp3"></audio>
 <audio id="audio3" preload="auto" src="audio3.mp3"></audio>
 
 <div id="s1" class="screen active">
@@ -361,10 +389,10 @@ h2 {
 </div>
 
 <script>
-// 🔥 PERFECT AUDIO SYSTEM - ALL 3 SOUNDS MIXED FOR PHOTOS!
-const audio1 = document.getElementById('audio1'); // Magical chime
-const audio2 = document.getElementById('audio2'); // Golden sparkle  
-const audio3 = document.getElementById('audio3'); // Swoosh/Memory
+// 🔥 PERFECT MOBILE AUDIO SYSTEM
+const audio1 = document.getElementById('audio1');
+const audio2 = document.getElementById('audio2'); 
+const audio3 = document.getElementById('audio3');
 
 let audioUnlocked = false;
 
@@ -377,20 +405,17 @@ function playSound(audioElement, volume = 0.7) {
     }).catch(() => {});
     return;
   }
-  
   audioElement.volume = volume;
   audioElement.currentTime = 0;
   audioElement.play().catch(() => {});
 }
 
 function playPhotoMix() {
-  // 🎵 MIX ALL 3 AUDIOS FOR PHOTOS - MAGICAL COMBO!
   const photoSounds = [
-    { audio: audio1, vol: 0.4 }, // Soft chime
-    { audio: audio2, vol: 0.3 }, // Gentle sparkle  
-    { audio: audio3, vol: 0.5 }  // Memory swoosh
+    { audio: audio1, vol: 0.4 },
+    { audio: audio2, vol: 0.3 },
+    { audio: audio3, vol: 0.5 }
   ];
-  
   photoSounds.forEach(({ audio, vol }) => {
     audio.volume = vol;
     audio.currentTime = 0;
@@ -418,7 +443,6 @@ function createRipple(e) {
 function goToScreen(from, to) {
   const fromScreen = document.getElementById(`s${from}`);
   const toScreen = document.getElementById(`s${to}`);
-  
   if (fromScreen) fromScreen.classList.remove('active');
   setTimeout(() => {
     if (toScreen) toScreen.classList.add('active');
@@ -431,18 +455,19 @@ function makeInteractive(el, callback, soundId = null) {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       if (soundId) playSound(soundId === 1 ? audio1 : soundId === 2 ? audio2 : audio3);
-      else playPhotoMix(); // PHOTOS MIX!
+      else playPhotoMix();
       callback();
     }
   });
 }
 
-// 💖 HEART HOLD - audio1.mp3
+// HEART HOLD
 let holdTimer;
 const heartContainer = document.querySelector('.heart-container');
 const heart = document.getElementById('heart');
 
 const startHold = (e) => {
+  e.preventDefault();
   createRipple(e);
   playSound(audio1, 0.8);
   heart.classList.add('holding');
@@ -455,19 +480,13 @@ const stopHold = () => {
 };
 
 heartContainer.addEventListener('mousedown', startHold);
-heartContainer.addEventListener('touchstart', e => { 
-  e.preventDefault(); 
-  startHold(e); 
-});
+heartContainer.addEventListener('touchstart', startHold, { passive: false });
 heartContainer.addEventListener('mouseup', stopHold);
-heartContainer.addEventListener('touchend', e => { 
-  e.preventDefault(); 
-  stopHold(); 
-});
+heartContainer.addEventListener('touchend', stopHold, { passive: false });
 heartContainer.addEventListener('mouseleave', stopHold);
 makeInteractive(heartContainer, startHold, 1);
 
-// 🎟️ TICKET - audio2.mp3
+// TICKET
 const ticket = document.getElementById('ticket');
 ticket.addEventListener('click', (e) => {
   createRipple(e);
@@ -479,7 +498,7 @@ makeInteractive(ticket, () => {
   goToScreen(2, 3);
 }, 2);
 
-// 🃏 CARDS - audio3.mp3
+// CARDS
 const cards = document.querySelectorAll('.card');
 let cardIdx = 0;
 const cardCounter = document.getElementById('cardCounter');
@@ -498,10 +517,7 @@ function updateCards() {
     }
   });
   cardCounter.textContent = `Tap cards to swipe (${cardIdx + 1}/6)`;
-  
-  if (cardIdx >= 5) {
-    setTimeout(() => goToScreen(3, 4), 800);
-  }
+  if (cardIdx >= 5) setTimeout(() => goToScreen(3, 4), 800);
 }
 
 document.getElementById('s3').addEventListener('click', (e) => {
@@ -515,7 +531,7 @@ document.getElementById('s3').addEventListener('click', (e) => {
 });
 updateCards();
 
-// 🖼️ GALLERY - ALL 3 AUDIOS MIXED TOGETHER! ✨✨✨
+// GALLERY
 const images = Array.from({length: 10}, (_, i) => `img${i+1}.jpg`);
 let imgIdx = 0;
 const mainImg = document.getElementById('mainImage');
@@ -531,7 +547,7 @@ function showImg(index) {
 const galleryContainer = document.getElementById('galleryContainer');
 galleryContainer.addEventListener('click', (e) => {
   createRipple(e);
-  playPhotoMix(); // 🎵 ALL 3 SOUNDS MIXED!
+  playPhotoMix();
   imgIdx++;
   if (imgIdx < 10) {
     showImg(imgIdx);
@@ -540,17 +556,16 @@ galleryContainer.addEventListener('click', (e) => {
   }
 });
 makeInteractive(galleryContainer, () => {
-  playPhotoMix(); // Keyboard too!
+  playPhotoMix();
   imgIdx++;
   if (imgIdx < 10) showImg(imgIdx);
   else goToScreen(4, 5);
 });
 
 showImg(0);
-
 window.addEventListener('resize', updateCards);
 
-console.log('💖 Perfect Love Experience Loaded! PHOTOS play ALL 3 SOUNDS MIXED! ✨');
+console.log('💖 MOBILE PERFECT Love Experience Loaded!');
 </script>
 </body>
 </html>
